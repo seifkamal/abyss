@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Average+Sans&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  --c-light: #fafafa;
+  --c-dark: #09090b;
+  --c-neutral: #d4d4d8;
+
+  --c-fg: var(--c-dark);
+  --c-bg: var(--c-light);
+
+  color: var(--c-fg);
+  background-color: var(--c-bg);
+  font-family: "Average Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 2rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --c-fg: var(--c-light);
+    --c-bg: var(--c-dark);
+    --c-neutral: #71717a;
+  }
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+@keyframes fade-in {
+  0%,
+  25%,
+  50%,
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  transition: filter 400ms 1s ease-out;
+}
+
+[type="reset"] {
+  width: fit-content;
+  margin-inline: auto;
+  user-select: none;
+}
+
+textarea {
+  all: unset;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  word-wrap: break-word;
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+  animation: fade-in 3s ease-out, flash 500ms 3s ease-in;
+}
+
+@keyframes flash {
+  50% {
+    background-color: var(--c-neutral);
+  }
+}
+
+[data-resetting] {
+  filter: blur(17px);
+  transition: filter 300ms ease-out;
+}
+
+[data-resetting] > textarea {
+  opacity: 0;
+}
+
+:has([data-resetting]) > #comment {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+:has([data-resetting]) > footer {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+button {
+  all: unset;
+  position: relative;
+  font-size: smaller;
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  color: var(--c-bg);
+  isolation: isolate;
+  animation: fade-in 2s ease-out;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 5rem;
+  background-color: var(--c-fg);
+  transition: transform 150ms ease-out;
+  z-index: -10;
+}
+
+button:hover::before {
+  transform: scaleX(1.05) scaleY(1.1);
+}
+
+button:active::before {
+  transform: scaleX(0.9) scaleY(0.95);
+}
+
+@keyframes fade-out {
+  0%,
+  25%,
+  50%,
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#comment {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  opacity: 0;
+  transition: opacity 250ms 1s ease-in;
+  animation: fade-out 2s ease-in-out;
+  pointer-events: none;
+  user-select: none;
+  font-size: 1.5rem;
+  color: var(--c-fg);
+}
+
+footer {
+  margin: 0.5rem;
+  text-align: center;
+  font-size: 0.5rem;
+  transition: opacity 250ms 1s ease-in;
+}
+
+cite {
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
