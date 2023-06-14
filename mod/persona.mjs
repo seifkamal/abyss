@@ -35,6 +35,18 @@ export function comment() {
   ]);
 }
 
+export function commentEmpty() {
+  return rand([
+    "You must have something to say..",
+    "Speaking up isn't always easy.",
+    "It's ok if you need time.",
+    "Silence can be quite loud.",
+    "...",
+    "You'll think of something.",
+    "You can come back later",
+  ]);
+}
+
 /** @type {<I>(arr: I[]) => I} */
 function rand(arr) {
   return arr[Math.floor(Math.random() * (arr.length - 1))];

@@ -1,4 +1,4 @@
-import { action, comment } from "./mod/persona.mjs";
+import { action, comment, commentEmpty } from "./mod/persona.mjs";
 
 window.addEventListener("DOMContentLoaded", () => {
   const formEl = query("form", HTMLFormElement);
@@ -18,8 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     formEl.toggleAttribute("data-resetting", true);
-    commentEl.textContent = comment();
     actionEl.textContent = action();
+    commentEl.textContent = inputEl.value === "" ? commentEmpty() : comment();
   });
 
   formEl.addEventListener("transitionend", (e) => {
