@@ -84,7 +84,7 @@ textarea {
   word-wrap: break-word;
   opacity: 1;
   transition: opacity 300ms ease-out;
-  animation: fade-in 3s ease-out, flash 500ms 3s ease-in;
+  animation: fade-in 3s ease-out, flash 500ms 2.2s ease-in;
 }
 
 @keyframes flash {
